@@ -5,7 +5,7 @@ Rust MCP server for governed dependency upgrades in Rust workspaces.
 ## Quick Install
 ```bash
 cargo install crate-sentinel-mcp
-codex add crate-sentinel crate-sentinel-mcp
+codex add mcp crate-sentinel crate-sentinel-mcp
 ```
 
 After this, `crate-sentinel` is registered in Codex as an MCP server.
