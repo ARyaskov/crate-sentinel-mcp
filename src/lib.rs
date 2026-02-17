@@ -1,0 +1,13 @@
+pub mod api_diff;
+pub mod cargo;
+pub mod ci;
+pub mod crates_io;
+pub mod error;
+pub mod guards;
+pub mod mcp;
+pub mod persistence;
+pub mod policy;
+pub mod refactor;
+pub mod session;
+pub mod upgrade;
+pub mod util;

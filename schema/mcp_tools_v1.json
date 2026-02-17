@@ -1,0 +1,249 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "mcp_tools_v1",
+  "type": "object",
+  "properties": {
+    "deps.scan": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "required": ["workspace_path"],
+          "properties": {
+            "workspace_path": { "type": "string" },
+            "session_id": { "type": "string" }
+          }
+        },
+        "output": {
+          "type": "object",
+          "required": ["workspace_root", "crates"],
+          "properties": {
+            "workspace_root": { "type": "string" },
+            "crates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["name", "version", "kind", "source"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "version": { "type": "string" },
+                  "kind": { "type": "string" },
+                  "source": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "deps.check_updates": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "required": ["workspace_path"],
+          "properties": {
+            "workspace_path": { "type": "string" },
+            "session_id": { "type": "string" }
+          }
+        },
+        "output": {
+          "type": "object",
+          "required": ["workspace_root", "updates"],
+          "properties": {
+            "workspace_root": { "type": "string" },
+            "updates": { "type": "array" }
+          }
+        }
+      }
+    },
+    "deps.try_upgrade": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "required": ["session_id", "workspace_path", "crate_name"],
+          "properties": {
+            "session_id": { "type": "string" },
+            "workspace_path": { "type": "string" },
+            "crate_name": { "type": "string" }
+          }
+        },
+        "output": {
+          "type": "object",
+          "required": ["crate", "compiles", "tests_pass", "check_exit_code", "test_exit_code", "errors", "warnings", "error", "stderr"],
+          "properties": {
+            "crate": { "type": "string" },
+            "compiles": { "type": "boolean" },
+            "tests_pass": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "deps.api_diff": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "required": ["workspace_path", "crate_name"],
+          "properties": {
+            "workspace_path": { "type": "string" },
+            "crate_name": { "type": "string" },
+            "session_id": { "type": "string" }
+          }
+        },
+        "output": {
+          "type": "object",
+          "required": ["crate", "current_version", "latest_version", "breaking", "summary", "details"],
+          "properties": {
+            "crate": { "type": "string" }
+          }
+        }
+      }
+    },
+    "deps.apply_upgrade": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "required": ["session_id", "workspace_path", "crate_name"],
+          "properties": {
+            "session_id": { "type": "string" },
+            "workspace_path": { "type": "string" },
+            "crate_name": { "type": "string" }
+          }
+        },
+        "output": {
+          "type": "object",
+          "required": ["crate", "previous_version", "new_version", "applied"],
+          "properties": {
+            "crate": { "type": "string" },
+            "applied": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "session.start": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "required": ["workspace_path"],
+          "properties": {
+            "workspace_path": { "type": "string" }
+          }
+        },
+        "output": {
+          "type": "object",
+          "required": ["session_id", "workspace_root"],
+          "properties": {
+            "session_id": { "type": "string" },
+            "workspace_root": { "type": "string" }
+          }
+        }
+      }
+    },
+    "session.status": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "required": ["session_id"],
+          "properties": {
+            "session_id": { "type": "string" }
+          }
+        },
+        "output": {
+          "type": "object",
+          "required": ["session_id", "workspace_root", "current_crate", "state", "audit_events"],
+          "properties": {
+            "state": { "type": "string" }
+          }
+        }
+      }
+    },
+    "session.end": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "required": ["session_id"],
+          "properties": {
+            "session_id": { "type": "string" }
+          }
+        },
+        "output": {
+          "type": "object",
+          "required": ["ended"],
+          "properties": {
+            "ended": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "refactor.plan": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "required": ["session_id", "crate_name"],
+          "properties": {
+            "session_id": { "type": "string" },
+            "crate_name": { "type": "string" }
+          }
+        },
+        "output": {
+          "type": "object",
+          "required": ["crate", "breaking", "refactor_actions"],
+          "properties": {
+            "refactor_actions": { "type": "array" }
+          }
+        }
+      }
+    },
+    "refactor.validate": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "required": ["session_id", "patch"],
+          "properties": {
+            "session_id": { "type": "string" },
+            "patch": { "type": "string" }
+          }
+        },
+        "output": {
+          "type": "object",
+          "required": ["compiles", "tests_pass", "errors"],
+          "properties": {
+            "compiles": { "type": "boolean" },
+            "tests_pass": { "type": "boolean" },
+            "errors": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "ci.report": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "required": ["workspace_path"],
+          "properties": {
+            "workspace_path": { "type": "string" }
+          }
+        },
+        "output": {
+          "type": "object",
+          "required": ["updates_total", "updates_allowed", "updates_disallowed", "disallowed"],
+          "properties": {
+            "updates_total": { "type": "integer" },
+            "updates_allowed": { "type": "integer" },
+            "updates_disallowed": { "type": "integer" },
+            "disallowed": { "type": "array" }
+          }
+        }
+      }
+    }
+  }
+}

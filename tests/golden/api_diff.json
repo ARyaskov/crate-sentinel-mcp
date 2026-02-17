@@ -1,0 +1,13 @@
+{
+  "crate": "serde",
+  "current_version": "",
+  "latest_version": "",
+  "breaking": false,
+  "summary": {
+    "removed_items": 0,
+    "changed_signatures": 0,
+    "trait_bound_changes": 0
+  },
+  "details": [],
+  "error": "invalid input: workspace path does not exist: tests/fixtures/does_not_exist"
+}

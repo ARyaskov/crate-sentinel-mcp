@@ -1,0 +1,16 @@
+[general]
+allow_patch = true
+allow_minor = true
+allow_major = false
+include_dev_dependencies = false
+
+[msrv]
+enforce = true
+max_allowed = "1.85"
+
+[performance]
+enforce = false
+
+[ci]
+mode = true
+fail_on_any_disallowed_update = true

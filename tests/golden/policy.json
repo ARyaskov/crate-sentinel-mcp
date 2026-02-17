@@ -1,0 +1,7 @@
+{
+  "default_allow_major": false,
+  "default_msrv_enforce": false,
+  "strict_allow_major": true,
+  "strict_msrv_enforce": true,
+  "strict_perf_enforce": true
+}

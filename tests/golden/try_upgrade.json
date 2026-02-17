@@ -1,0 +1,13 @@
+{
+  "crate": "serde",
+  "compiles": false,
+  "tests_pass": false,
+  "check_exit_code": 1,
+  "test_exit_code": 1,
+  "errors": [
+    "crate not found in workspace dependencies"
+  ],
+  "warnings": [],
+  "error": "crate not found in workspace dependencies",
+  "stderr": ""
+}
